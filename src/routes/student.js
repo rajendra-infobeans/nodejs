@@ -1,7 +1,7 @@
 import express from 'express';
 
 // Importing student controller functions.
-import { getStudents, createStudent, deleteStudent } from '../../controller/stduent.js';
+import { getStudents, createStudent, deleteStudent } from '../controller/stduent.js';
 
 const router = express.Router();
 

@@ -4,8 +4,8 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 
 // Importing routes:
-import studentRoutes from './routes/student.js';
-import registerRouter from './routes/register.js';
+import studentRoutes from './src/routes/student.js';
+import registerRouter from './src/routes/register.js';
 
 // Creating express application
 const app = express();
