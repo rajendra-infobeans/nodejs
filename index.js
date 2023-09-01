@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { request } from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import mongoose from 'mongoose';
@@ -6,6 +6,8 @@ import mongoose from 'mongoose';
 // Importing routes:
 import studentRoutes from './src/routes/student.js';
 import registerRouter from './src/routes/register.js';
+import loginRouter from './src/routes/login.js';
+import userRouter from './src/routes/user.js';
 
 // Creating express application
 const app = express();
@@ -17,9 +19,21 @@ app.use(bodyParser.urlencoded({limit:'20mb', extended:true}));
 
 // Allow incoming request from different origin
 app.use(cors());
+app.options('*', cors());
+
+// Index routues
+app.get('/', (req, res) => {
+    res.send('Invalid endpoint');
+});
 
 // For register routes
 app.use('/register', registerRouter);
+
+// For login routes:
+app.use('/login', loginRouter);
+
+// For user routes:
+app.use('/user', userRouter);
 
 // For student middleware routes.
 app.use('/students', studentRoutes);

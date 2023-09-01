@@ -1,7 +1,8 @@
-import { Router as _Router } from 'express';
-const Router = _Router();
+import express from "express";
+import login from "../controller/login/login.js";
 
-Router.post('/', ()=>{
-console.log('Post request received');
-});
+const loginRouter = express.Router();
 
+loginRouter.post("/", login);
+
+export default loginRouter;
