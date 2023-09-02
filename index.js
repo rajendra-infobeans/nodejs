@@ -2,6 +2,7 @@ import express, { request } from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import mongoose from 'mongoose';
+import fileUpload from 'express-fileupload';
 
 // Importing routes:
 import studentRoutes from './src/routes/student.js';
@@ -20,6 +21,9 @@ app.use(bodyParser.urlencoded({limit:'20mb', extended:true}));
 // Allow incoming request from different origin
 app.use(cors());
 app.options('*', cors());
+
+// Files payload middleware.
+app.use(fileUpload({createParentPath: true}));
 
 // Index routues
 app.get('/', (req, res) => {
