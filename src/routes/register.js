@@ -1,11 +1,9 @@
-
-import express from 'express';
-import { register } from '../controller/register/register.js';
-import {registerValidation} from '../middleware/JoiValidation.js';
+const express = require('express');
+const { register } = require('../controller/register/register.js');
+const { registerValidation } = require('../middleware/JoiValidation.js');
 
 const registerRouter = express.Router();
 
 registerRouter.post('/', registerValidation, register);
 
-export default registerRouter;
-
+module.exports = registerRouter;

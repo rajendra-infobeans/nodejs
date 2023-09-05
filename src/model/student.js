@@ -1,7 +1,7 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 // Creating student table schema:
-const stduentSchema = mongoose.Schema({
+const studentSchema = mongoose.Schema({
     regno: Number,
     name:  String,
     grade: String,
@@ -11,6 +11,6 @@ const stduentSchema = mongoose.Schema({
     }
 });
 
-const student = mongoose.model('student', stduentSchema);
+const student = mongoose.model('student', studentSchema);
 
-export default student;
+module.exports = student;

@@ -1,14 +1,13 @@
-import path from "path";
-import User from "../../model/user.js";
-import "../../../rootPath.js";
+const path = require('path');
+const User = require('../../model/user.js');
+const rootDir = require('../../../rootPath.js')
 
-export const getUser = async (req, res, next) => {
+exports.getUser = async (req, res, next) => {
   const user = await User.findOne({ _id: req.tokenDetails._id });
   return res.status(200).json({ data: user });
 };
 
-export const updateUser = async (req, res, next) => {
-  // const user = await User.findOne({_id: req.tokenDetails._id});
+exports.updateUser = async (req, res, next) => {
   const filter = { _id: req.tokenDetails._id };
   const fieldsToUpdate = {
     $set: {
@@ -24,16 +23,14 @@ export const updateUser = async (req, res, next) => {
   return res.status(401).json({ data: {}, message: "Something went wrong!" });
 };
 
-export const uploadUserImage = (req, res, next) => {
-  const __dirname = global.rootDir;
-
+exports.uploadUserImage = (req, res, next) => {
   const files = req.files;
   Object.keys(files).forEach((key) => {
-    const filePath = path.join(__dirname, "public/files", files[key].name);
+    const filePath = path.join(rootDir, "public/files", files[key].name);
     files[key].mv(filePath, (err) => {
       if (err)
         return res.status(500).json({ status: "error", message: err.message });
     });
   });
-  return res.status(200).json({ status: "logged", message: "logged" });
+  return res.status(200).json({ status: "success", message: "User profile updated successfully!" });
 };

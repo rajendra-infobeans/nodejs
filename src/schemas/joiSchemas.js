@@ -1,4 +1,4 @@
-import Joi from "joi";
+const Joi = require('joi');
 
 const schemas = {
     registerSchema: Joi.object().keys({
@@ -7,6 +7,6 @@ const schemas = {
         firstname: Joi.string().trim().min(2).required(),
         lastname: Joi.string().trim().min(2).required()
     })
-}
+};
 
-export default schemas;
+module.exports = schemas;

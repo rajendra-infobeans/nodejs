@@ -1,22 +1,26 @@
-import express from "express";
-import { getUser, updateUser, uploadUserImage } from "../controller/user/user.js";
-import authMiddleware from "../middleware/auth.js";
-import {
+const express = require('express');
+const {
+  getUser,
+  updateUser,
+  uploadUserImage
+} = require('../controller/user/user.js');
+const authMiddleware = require('../middleware/auth.js');
+const {
   fileSizeLimiter,
   filesExtensionLimiter,
-  filesPayloadExit,
-} from "../middleware/file.js";
+  filesPayloadExit
+} = require('../middleware/file.js');
 
 const userRouter = express.Router();
 userRouter.use(authMiddleware);
-userRouter.get("/", getUser);
-userRouter.post("/", updateUser);
+userRouter.get('/', getUser);
+userRouter.post('/', updateUser);
 userRouter.post(
-  "/ImageUpload",
+  '/ImageUpload',
   filesPayloadExit,
   filesExtensionLimiter(['.png', '.jpg', '.jpeg']),
   fileSizeLimiter,
   uploadUserImage
 );
 
-export default userRouter;
+module.exports = userRouter;
