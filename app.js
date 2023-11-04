@@ -12,6 +12,8 @@ const userRouter = require('./src/routes/user.js');
 
 // Creating express application
 const app = express();
+// Loading Environment variables
+require('dotenv').config();
 // Add middleware for incoming request for json payload
 app.use(bodyParser.json({ limit: '20mb', extended: true }));
 
