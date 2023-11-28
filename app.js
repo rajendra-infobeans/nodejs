@@ -14,6 +14,7 @@ const userRouter = require('./src/routes/user.js');
 const app = express();
 // Loading Environment variables
 require('dotenv').config();
+console.log('process.env.AWS_ACCESS_KEYTT', process.env.AWS_ACCESS_KEY);
 // Add middleware for incoming request for json payload
 app.use(bodyParser.json({ limit: '20mb', extended: true }));
 

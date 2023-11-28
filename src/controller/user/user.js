@@ -1,6 +1,7 @@
 const path = require('path');
 const User = require('../../model/user.js');
-const rootDir = require('../../../rootPath.js')
+const rootDir = require('../../../rootPath.js');
+const fileUploadToS3 = require('../../../util/customHooks/fileUploadToS3.js');
 
 exports.getUser = async (req, res, next) => {
   const user = await User.findOne({ _id: req.tokenDetails._id });
@@ -32,5 +33,10 @@ exports.uploadUserImage = (req, res, next) => {
         return res.status(500).json({ status: "error", message: err.message });
     });
   });
+  try {
+    fileUploadToS3(files);
+  } catch (err) {
+    return res.status(500).json({ status: "error", message: err.message });
+  }
   return res.status(200).json({ status: "success", message: "User profile updated successfully!" });
 };

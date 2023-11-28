@@ -41,7 +41,7 @@ app.use('/user', userRouter);
 
 // For student middleware routes.
 app.use('/students', studentRoutes);
-
+console.log('Testing 2');
 // Select server port to run application.
 const PORT = process.env.PORT || 5000;
 
